@@ -7,5 +7,6 @@ CREATE TABLE TTareas (
 	ID INT AUTO_INCREMENT,
 	Titulo VARCHAR(50),
 	Descripcion TEXT,
+	Hecha Boolean,
 	PRIMARY KEY(ID)
 );
