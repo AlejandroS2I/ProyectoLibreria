@@ -1,13 +1,13 @@
 # Tareas
 
-Hugo
+## Hugo
 - [ ] Insert php
 - [ ] Delete php
+- [ ] Select JQuery
+- [ ] Update JQuery
 
-Alejandro
+## Alejandro
 - [ ] Select php
 - [ ] Update php
-
-
-
-
+- [ ] Insert JQuery
+- [ ] Delete JQuery
