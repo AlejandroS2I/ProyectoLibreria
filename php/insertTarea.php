@@ -1,16 +1,15 @@
 <?php
-        require_once 'connect.php';
-        $db = 'lista_alumnos';
+    require_once 'connect.php';
+    $db = 'tareas';
 
-        $conexion = conectar($db);
-        $parametros = array(
-            ":nombre"=>$_POST['nombre'],
-            ":apellidos"=>$_POST['apellidos'],
-            ":email"=>$_POST['email'],
-            ":tlf"=>$_POST['telefono']
-        );
-        $sql = "INSERT INTO `alumnos` (`id`, `nombre`, `apellidos`, `email`, `telefono`) VALUES (NULL, :nombre, :apellidos, :email, :tlf)";
-        $pdo = $conexion->prepare($sql);
-        $pdo->execute($parametros);
-    
+    $conexion = conectar($db);
+    $parametros = array(
+        ":ID"=>$_POST['ID'],
+        ":Nombre"=>$_POST['Nombre'],
+        ":Descripcion"=>$_POST['Descripcion'],
+        ":Hecha"=>$_POST['Hecha']
+    );
+    $sql = "INSERT INTO `ttareas` (`ID`, `Nombre`, `Descripcion`, `Hecha`) VALUES (:ID, :Nombre, :Descripcion, :Hecha)";
+    $pdo = $conexion->prepare($sql);
+    $pdo->execute($parametros);
 ?>
