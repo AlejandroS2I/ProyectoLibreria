@@ -9,7 +9,7 @@
             ":descripcion"=>$_POST['descripcion'],
             ":hecha"=>$_POST['hecha'],
         );
-        $sql = "UPDATE tareas SET titulo = :titulo, descripcion = :descripcion, hecha = :hecha WHERE id = :id";
+        $sql = "UPDATE ttareas SET titulo = :titulo, descripcion = :descripcion, hecha = :hecha WHERE id = :id";
         $pdo = $conexion->prepare($sql);
         $pdo->execute($parametros);
     
