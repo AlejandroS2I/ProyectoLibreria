@@ -1,4 +1,7 @@
-mostrarTareas();
+$(document).ready(function(){
+    mostrarTareas(mostrar);
+
+})
 //insertar
 function insertTarea(titulo, descripcion, hecha, mostrar) {
 	$.ajax({
@@ -24,7 +27,7 @@ function actualizarTareas(id, titulo, descripcion, hecha, mostrar){
         data:{
             id:id,
             titulo:titulo,
-            descripcio: descripcion,
+            descripcion: descripcion,
             hecha: hecha,
         }
         ,
@@ -62,4 +65,23 @@ function mostrarTareas(mostrar) {
             console.log("Error al obtener la lista de tareas: " + error);
         }
     });
+}
+
+function mostrar(res){
+    var tareas = $("#id_tareas")
+    res.foreach(e=>{
+        var contenedor= $("<div>").addClass("tarea");
+        var titulo = $("<h3>").text(e.titulo);
+        var descripcion = $("<p>").text(e.descripcion);
+        var hecha = $("<label>").text("hecha: ").append($("<imput type='checkbox'>"));
+
+        contenedor.append(titulo);
+        contenedor.append(descripcion);
+        contenedor.append(hecha);
+
+        tareas.append(contenedor);
+    });
+
+
+
 }
