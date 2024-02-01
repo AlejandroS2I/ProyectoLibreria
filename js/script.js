@@ -1,7 +1,7 @@
-$(document).ready(function(){
+$(document).ready(function() {
     mostrarTareas(mostrar);
+});
 
-})
 //insertar
 function insertTarea(titulo, descripcion, hecha, mostrar) {
 	$.ajax({
@@ -19,6 +19,7 @@ function insertTarea(titulo, descripcion, hecha, mostrar) {
 		}
 	});
 }
+
 //actualizar
 function actualizarTareas(id, titulo, descripcion, hecha, mostrar){
     $.ajax({
@@ -38,6 +39,7 @@ function actualizarTareas(id, titulo, descripcion, hecha, mostrar){
         }
     })
 }
+
 //eliminar
 function eliminarTarea(id, mostrar) {
 	$.ajax({
@@ -68,11 +70,11 @@ function mostrarTareas(mostrar) {
 }
 
 function mostrar(res){
-    var tareas = $("#id_tareas")
-    res.foreach(e=>{
+    var tareas = $("#tareas")
+    res.forEach((tarea) => {
         var contenedor= $("<div>").addClass("tarea");
-        var titulo = $("<h3>").text(e.titulo);
-        var descripcion = $("<p>").text(e.descripcion);
+        var titulo = $("<h3>").text(tarea.titulo);
+        var descripcion = $("<p>").text(tarea.descripcion);
         var hecha = $("<label>").text("hecha: ").append($("<imput type='checkbox'>"));
 
         contenedor.append(titulo);
@@ -81,7 +83,4 @@ function mostrar(res){
 
         tareas.append(contenedor);
     });
-
-
-
 }
