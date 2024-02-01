@@ -78,27 +78,35 @@ article#tareas {
 }
 
 /* tarea */
-article#tareas div.nota {
+article#tareas div.tarea {
 	position: relative;
 	border: 1px solid #FFF;
 	border-radius: 10px;
 	padding: 10px;
 }
 
-article#tareas div.nota p {
+article#tareas div.tarea p {
 	text-align: justify;
+	margin-bottom: 5px;
 	margin-top: 10px;
 }
 
-article#tareas div.nota button {
+article#tareas div.tarea button.borrartarea {
 	position: absolute;
 	top: 10px;
 	right: 10px;
 	width: 10%;
 }
 
+article#tareas div.tarea button.editartarea {
+	position: absolute;
+	top: 50px;
+	right: 10px;
+	width: 10%;
+}
+
 /* Botón de nueva tarea */
-article#tareas button#id_nuevaNota {
+article#tareas button#id_nuevatarea {
 	font-weight: bold;
 	font-size: 1em;
 }
@@ -124,7 +132,7 @@ article#tareas form div * {
 	flex: 1 1 auto;
 }
 
-article#tareas form input[type="text"], article#notas form textarea {
+article#tareas form input[type="text"], article#tareas form textarea {
 	background-color: #333333;
 	border: 0;
 	border-bottom: 1px solid #FFF;

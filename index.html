@@ -12,13 +12,6 @@
 		<section>
 			<article id="tareas">
 				<h1>Tareas</h1>
-				<div class="tarea">
-					<h3>No se ha cargado correctamente</h3>
-					<p>
-						La base de datos no se ha cargado correctamente
-					</p>
-					<button class="borrartarea">Borrar</button>
-				</div>
 				<form id="id_formulariotarea" class="esconder">
 					<input type="text" id="id_titulo" placeholder="Título...">
 					<textarea id="id_contenido" rows="5" placeholder="Contenido..."></textarea>
@@ -29,6 +22,17 @@
 					</div>
 				</form>
 				<button id="id_nuevatarea">Nueva</button>
+				<div class="tarea">
+					<h3>No se ha cargado correctamente</h3>
+					<p>
+						La base de datos no se ha cargado correctamente
+					</p>
+					<label for="hecha">Hecha: <input type="checkbox"></label>
+					<button class="borrartarea">Borrar</button>
+					<button class="editartarea">Editar</button>
+					
+
+				</div>
 			</article>
 		</section>
 	</body>
