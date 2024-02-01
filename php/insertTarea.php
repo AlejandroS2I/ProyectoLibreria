@@ -4,11 +4,11 @@
 
     $conexion = conectar($db);
     $parametros = array(
-        ":Nombre"=>$_POST['Nombre'],
+        ":Titulo"=>$_POST['Titulo'],
         ":Descripcion"=>$_POST['Descripcion'],
         ":Hecha"=>$_POST['Hecha']
     );
-    $sql = "INSERT INTO `ttareas` ( `Nombre`, `Descripcion`, `Hecha`) VALUES (:Nombre, :Descripcion, :Hecha)";
+    $sql = "INSERT INTO `ttareas` ( `Titulo`, `Descripcion`, `Hecha`) VALUES (:Titulo, :Descripcion, :Hecha)";
     $pdo = $conexion->prepare($sql);
     $pdo->execute($parametros);
 ?>
