@@ -1,5 +1,14 @@
 $(document).ready(function() {
-    mostrarTareas(  );
+        mostrarTareas();
+
+        $("#id_nuevatarea").on("click", mostrarFormulario);
+        $("#id_cancelartarea").on("click", mostrarFormulario);
+
+        $("#id_formulariotarea").on("submit", function(e) {
+                e.preventDefault();
+                insertTarea($("#id_titulo").val(), $("#id_descripcion").val(), 0, mostrarTareas);
+                mostrarFormulario();
+        })
 });
 
 //insertar
@@ -90,4 +99,12 @@ function mostrar(res){
 
 
         });
+}
+
+function mostrarFormulario() {
+	let _mostrado = $("#id_formulariotarea").toggleClass('esconder').hasClass('esconder');
+        $("#id_nuevatarea").toggleClass('esconder', !_mostrado);
+	if (!_mostrado) {
+		$("#id_formulariotarea")[0].reset();
+	}
 }
