@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    mostrarTareas(mostrar);
+    mostrarTareas(  );
 });
 
 //insertar
@@ -57,7 +57,7 @@ function eliminarTarea(id, mostrar) {
 }
 
 //seleccionar
-function mostrarTareas(mostrar) {
+function mostrarTareas() {
         $.ajax({
         type: 'GET',
         url: 'php/selectTarea.php',
@@ -77,12 +77,20 @@ function mostrar(res){
                 var contenedor= $("<div>").addClass("tarea");
                 var titulo = $("<h3>").text(tarea.Titulo);
                 var descripcion = $("<p>").text(tarea.Descripcion);
-                var hecha = $("<label>").text("hecha: ").append($("<input type='checkbox'>"));
+                var hecha = $("<label>").text("Tarea completada: ").append($("<input type='checkbox'>"));
+                var botonmodificar = $($("<button>")).text("Modificar").addClass("editartarea");
+                var borrartarea = $($("<button>")).text("Borrar").addClass("borrartarea").on("click", function(){
+                    eliminarTarea(tarea.ID, mostrarTareas);
+                });
 
+                contenedor.append(borrartarea);
+                contenedor.append(botonmodificar);
                 contenedor.append(titulo);
                 contenedor.append(descripcion);
                 contenedor.append(hecha);
 
                 tareas.append(contenedor);
+
+
         });
 }
