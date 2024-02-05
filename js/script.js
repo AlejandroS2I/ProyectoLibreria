@@ -77,25 +77,30 @@ function mostrarTareas() {
 
 function mostrar(res){
         var tareas = $("#tareas")
+        var tareascompletadas = $("#tareascompletadas")
         tareas.children('.tarea').remove();
 
         res.forEach((tarea) => {
                 var contenedor= $("<div>").addClass("tarea");
                 var titulo = $("<h3>").text(tarea.Titulo);
                 var descripcion = $("<p>").text(tarea.Descripcion);
-                var hecha = $("<label>").text("Tarea completada: ").append($("<input type='checkbox'>"));
-                var botonmodificar = $($("<button>")).text("Modificar").addClass("editartarea");
-                var borrartarea = $($("<button>")).text("Borrar").addClass("borrartarea").on("click", function(){
+                var botonModificar = $($("<button>")).text("Modificar").addClass("editartarea");
+                var botonCompletar = $($("<button>")).text("Completar").addClass("completartarea");
+                var botonBorrar = $($("<button>")).text("Borrar").addClass("borrartarea").on("click", function(){
                     eliminarTarea(tarea.ID, mostrarTareas);
                 });
 
-                contenedor.append(borrartarea);
-                contenedor.append(botonmodificar);
+                contenedor.append(botonCompletar);
+                contenedor.append(botonBorrar);
+                contenedor.append(botonModificar);
                 contenedor.append(titulo);
                 contenedor.append(descripcion);
-                contenedor.append(hecha);
-
-                tareas.append(contenedor);
+                
+                if (!tarea.Hecha) {
+                        tareas.append(contenedor);
+                } else {
+                        tareascompletadas.append(contenedor);
+                }
 
 
         });
