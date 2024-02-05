@@ -70,17 +70,19 @@ function mostrarTareas(mostrar) {
 }
 
 function mostrar(res){
-    var tareas = $("#tareas")
-    res.forEach((tarea) => {
-        var contenedor= $("<div>").addClass("tarea");
-        var titulo = $("<h3>").text(tarea.titulo);
-        var descripcion = $("<p>").text(tarea.descripcion);
-        var hecha = $("<label>").text("hecha: ").append($("<imput type='checkbox'>"));
+        var tareas = $("#tareas")
+        tareas.children('.tarea').remove();
 
-        contenedor.append(titulo);
-        contenedor.append(descripcion);
-        contenedor.append(hecha);
+        res.forEach((tarea) => {
+                var contenedor= $("<div>").addClass("tarea");
+                var titulo = $("<h3>").text(tarea.Titulo);
+                var descripcion = $("<p>").text(tarea.Descripcion);
+                var hecha = $("<label>").text("hecha: ").append($("<input type='checkbox'>"));
 
-        tareas.append(contenedor);
-    });
+                contenedor.append(titulo);
+                contenedor.append(descripcion);
+                contenedor.append(hecha);
+
+                tareas.append(contenedor);
+        });
 }
