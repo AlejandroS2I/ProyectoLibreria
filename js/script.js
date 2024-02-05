@@ -12,7 +12,6 @@ function insertTarea(titulo, descripcion, hecha, mostrar) {
 			Descripcion: descripcion,
 			Hecha: hecha
 		},
-		dataType: 'json',
 		success: mostrar,
 		error: function(e) {
 			console.error(e);
@@ -32,7 +31,6 @@ function actualizarTareas(id, titulo, descripcion, hecha, mostrar){
             hecha: hecha,
         }
         ,
-        dataType: 'json',
         success: mostrar,
         error: function (error) {
             console.log("Error al cambiar la lista de tareas: " + error);
@@ -48,7 +46,6 @@ function eliminarTarea(id, mostrar) {
 		data: {
 			id: id,
 		},
-		dataType: 'json',
 		success: mostrar,
 		error: function(e) {
 			console.error(e);
