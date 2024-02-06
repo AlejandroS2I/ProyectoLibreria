@@ -220,7 +220,7 @@ article#tareascompletadas div.tarea button.borrartarea {
 	top: 10px;
 	right: 10px;
 	width: 10%;
-	display:none;
+	display:block;
 }
 
 article#tareascompletadas div.tarea button.editartarea {
