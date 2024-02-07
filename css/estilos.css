@@ -23,6 +23,7 @@ body {
 
 section {
 	display: flex;
+	flex-wrap: wrap;
 	scroll-snap-type: y mandatory;
 }
 
@@ -67,7 +68,7 @@ button:focus, input[type="submit"]:focus, input[type="reset"]:focus, input[type=
 
 /* tareas */
 article#tareas {
-	width: 50%;
+	flex: 1 1 50%;
 	height: 100vh;
 	border: 1px solid #FFF;
 	display: flex;
@@ -198,7 +199,7 @@ article#tareas form textarea {
 
 /* tareas completadas */
 article#tareascompletadas {
-	width: 50%;
+	flex: 1 1 50%;
 	height: 100vh;
 	border: 1px solid #FFF;
 	display: flex;
