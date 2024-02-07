@@ -1,3 +1,13 @@
+var filtro = {
+        titulo : '',
+        descripcion : ''
+};
+
+var filtroCompletadas = {
+        titulo : '',
+        descripcion : ''
+};
+
 $(document).ready(function() {
         mostrarTareas();
 
@@ -9,6 +19,26 @@ $(document).ready(function() {
                 insertTarea($("#id_titulo").val(), $("#id_descripcion").val(), 0, mostrarTareas);
                 mostrarFormulario();
         })
+
+        $("#filtroTitulo").on("change keyup", function(e) {
+                filtro.titulo = $(this).val();
+                filtrar();
+        });
+
+        $("#filtroDescripcion").on("change keyup", function(e) {
+                filtro.descripcion = $(this).val();
+                filtrar();
+        });
+
+        $("#filtroTituloCompletas").on("change keyup", function(e) {
+                filtroCompletadas.titulo= $(this).val();
+                filtrarCompletadas();
+        });
+
+        $("#filtroDescripcionCompletas").on("change keyup", function(e) {
+                filtroCompletadas.descripcion = $(this).val();
+                filtrarCompletadas();
+        });
 });
 
 //insertar
@@ -32,17 +62,16 @@ function insertTarea(titulo, descripcion, hecha, mostrar) {
 function actualizarTareas(id, titulo, descripcion, hecha, mostrar){
     $.ajax({
         type: 'POST',
-        url: 'php/updateTarea',
+        url: 'php/updateTarea.php',
         data:{
             id:id,
             titulo:titulo,
             descripcion: descripcion,
             hecha: hecha,
-        }
-        ,
+        },
         success: mostrar,
-        error: function (error) {
-            console.log("Error al cambiar la lista de tareas: " + error);
+        error: function (e) {
+            console.error(e);
         }
     })
 }
@@ -69,24 +98,32 @@ function mostrarTareas() {
         url: 'php/selectTarea.php',
         dataType: 'json',
         success: mostrar,
-        error: function (error) {
-            console.log("Error al obtener la lista de tareas: " + error);
+        error: function (e) {
+                console.error(e);
         }
     });
 }
 
 function mostrar(res){
         var tareas = $("#tareas")
-        var tareascompletadas = $("#tareascompletadas")
+        var tareasCompletadas = $("#tareascompletadas")
         tareas.children('.tarea').remove();
+        tareasCompletadas.children('.tarea').remove();
 
         res.forEach((tarea) => {
                 var contenedor= $("<div>").addClass("tarea");
                 var titulo = $("<h3>").text(tarea.Titulo);
                 var descripcion = $("<p>").text(tarea.Descripcion);
-                var botonModificar = $($("<button>")).text("Modificar").addClass("editartarea");
-                var botonCompletar = $($("<button>")).text("Completar").addClass("completartarea");
-                var botonBorrar = $($("<button>")).text("Borrar").addClass("borrartarea").on("click", function(){
+                var botonModificar = $("<button>")
+                        .text("Modificar")
+                        .addClass("editartarea");
+                var botonCompletar = $("<button>")
+                        .text("Completar")
+                        .addClass("completartarea")
+                        .on("click", function() {
+                                actualizarTareas(tarea.ID, tarea.Titulo, tarea.Descripcion, (tarea.Hecha ? 0 : 1) , mostrarTareas);
+                        });
+                var botonBorrar = $("<button>").text("Borrar").addClass("borrartarea").on("click", function(){
                     eliminarTarea(tarea.ID, mostrarTareas);
                 });
 
@@ -99,7 +136,7 @@ function mostrar(res){
                 if (!tarea.Hecha) {
                         tareas.append(contenedor);
                 } else {
-                        tareascompletadas.append(contenedor);
+                        tareasCompletadas.append(contenedor);
                 }
 
 
@@ -112,4 +149,42 @@ function mostrarFormulario() {
 	if (!_mostrado) {
 		$("#id_formulariotarea")[0].reset();
 	}
+}
+
+function filtrar() {
+        $('#tareas .tarea').each(function(index, e) {
+                $(e).toggleClass(
+                        'esconder', 
+                        (
+                                !$($(e).children('h3')[0])
+                                        .text()
+                                        .toLowerCase()
+                                        .includes(filtro.titulo.toLowerCase())
+                                ||
+                                !$($(e).children('p')[0])
+                                        .text()
+                                        .toLowerCase()
+                                        .includes(filtro.descripcion.toLowerCase())
+                        )
+                );
+        });
+}
+
+function filtrarCompletadas() {
+        $('#tareascompletadas .tarea').each(function(index, e) {
+                $(e).toggleClass(
+                        'esconder', 
+                        (
+                                !$($(e).children('h3')[0])
+                                        .text()
+                                        .toLowerCase()
+                                        .includes(filtroCompletadas.titulo.toLowerCase())
+                                ||
+                                !$($(e).children('p')[0])
+                                        .text()
+                                        .toLowerCase()
+                                        .includes(filtroCompletadas.descripcion.toLowerCase())
+                        )
+                );
+        });
 }
