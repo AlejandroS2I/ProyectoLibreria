@@ -200,7 +200,7 @@ function modificar(id, titulo, descripcion, hecha, tarea) {
                 .insertBefore(tarea);
 
         _form.find('#id_tituloModificar').val(titulo);
-        _form.find('#id_descripcionModificar').text(descripcion);
+        _form.find('#id_descripcionModificar').val(descripcion);
         _form.find('#id_cancelarModificar').on('click', function() {
                 _form.addClass('esconder');
                 tarea.removeClass('esconder');
@@ -209,6 +209,7 @@ function modificar(id, titulo, descripcion, hecha, tarea) {
                 e.preventDefault();
                 actualizarTareas(id, _form.find("#id_tituloModificar").val(), _form.find("#id_descripcionModificar").val(), hecha, mostrarTareas);
                 _form.addClass('esconder');
+                _form.off('submit');
         });
 
         tarea.addClass('esconder');
