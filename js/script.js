@@ -116,7 +116,10 @@ function mostrar(res){
                 var descripcion = $("<p>").text(tarea.Descripcion);
                 var botonModificar = $("<button>")
                         .text("Modificar")
-                        .addClass("editartarea");
+                        .addClass("editartarea")
+                        .on("click", function() {
+                                modificar(tarea.ID, tarea.Titulo, tarea.Descripcion, tarea.Hecha, this.parentElement);
+                        });
                 var botonCompletar = $("<button>")
                         .text("Completar")
                         .addClass("completartarea")
@@ -187,4 +190,26 @@ function filtrarCompletadas() {
                         )
                 );
         });
+}
+
+function modificar(id, titulo, descripcion, hecha, tarea) {
+        tarea = $(tarea);
+
+        let _form = $("#id_formulariomodificar")
+                .removeClass('esconder')
+                .insertBefore(tarea);
+
+        _form.find('#id_tituloModificar').val(titulo);
+        _form.find('#id_descripcionModificar').text(descripcion);
+        _form.find('#id_cancelarModificar').on('click', function() {
+                _form.addClass('esconder');
+                tarea.removeClass('esconder');
+        });
+        _form.on('submit', function(e) {
+                e.preventDefault();
+                actualizarTareas(id, _form.find("#id_tituloModificar").val(), _form.find("#id_descripcionModificar").val(), hecha, mostrarTareas);
+                _form.addClass('esconder');
+        });
+
+        tarea.addClass('esconder');
 }
