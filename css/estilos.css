@@ -33,6 +33,7 @@ article {
 h1 {
 	font-size: 2em;
 	font-weight: 900;
+	text-align: center;
 }
 
 input, textarea {
@@ -75,6 +76,15 @@ article#tareas {
 	align-items: stretch;
 	padding: 10px;
 	overflow: auto;
+}
+
+article#tareas input[type="text"]{
+	width: 100%;
+	background-color: #333333;
+	border: 0;
+	color: #FFF;
+	padding: 5px;
+	border-bottom: 2px solid #FFF;
 }
 
 /* tarea */
@@ -155,6 +165,7 @@ article#tareas form div * {
 	flex: 1 1 auto;
 }
 
+
 article#tareas form input[type="text"], article#tareas form textarea {
 	background-color: #333333;
 	border: 0;
@@ -198,13 +209,22 @@ article#tareascompletadas {
 	overflow: auto;
 }
 
-/* tarea */
+/* tarea completada*/
 article#tareascompletadas div.tarea {
 	min-height: 130px;
 	position: relative;
 	border: 1px solid #FFF;
 	border-radius: 10px;
 	padding: 10px;
+}
+
+article#tareascompletadas input[type="text"]{
+	width: 100%;
+	background-color: #333333;
+	border: 0;
+	color: #FFF;
+	padding: 5px;
+	border-bottom: 2px solid #FFF;
 }
 
 article#tareascompletadas div.tarea p {
