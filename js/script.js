@@ -9,6 +9,14 @@ $(document).ready(function() {
                 insertTarea($("#id_titulo").val(), $("#id_descripcion").val(), 0, mostrarTareas);
                 mostrarFormulario();
         })
+
+        $("#filtroTitulo").on("change keyup", function(e) {
+                filtrarTitulo($(this).val());
+        });
+
+        $("#filtroDescripcion").on("change keyup", function(e) {
+                filtrarDescripcion($(this).val());
+        });
 });
 
 //insertar
@@ -119,4 +127,28 @@ function mostrarFormulario() {
 	if (!_mostrado) {
 		$("#id_formulariotarea")[0].reset();
 	}
+}
+
+function filtrarTitulo(texto) {
+        $('.tarea').each(function(index, e) {
+                $(e).toggleClass(
+                        'esconder', 
+                        !$($(e).children('h3')[0])
+                                .text()
+                                .toLowerCase()
+                                .includes(texto.toLowerCase())
+                );
+        });
+}
+
+function filtrarDescripcion(texto) {
+        $('.tarea').each(function(index, e) {
+                $(e).toggleClass(
+                        'esconder', 
+                        !$($(e).children('p')[0])
+                                .text()
+                                .toLowerCase()
+                                .includes(texto.toLowerCase())
+                );
+        });
 }
