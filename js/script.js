@@ -1,3 +1,13 @@
+var filtro = {
+        titulo : '',
+        descripcion : ''
+};
+
+var filtroCompletadas = {
+        titulo : '',
+        descripcion : ''
+};
+
 $(document).ready(function() {
         mostrarTareas();
 
@@ -11,11 +21,23 @@ $(document).ready(function() {
         })
 
         $("#filtroTitulo").on("change keyup", function(e) {
-                filtrarTitulo($(this).val());
+                filtro.titulo = $(this).val();
+                filtrar();
         });
 
         $("#filtroDescripcion").on("change keyup", function(e) {
-                filtrarDescripcion($(this).val());
+                filtro.descripcion = $(this).val();
+                filtrar();
+        });
+
+        $("#filtroTituloCompletas").on("change keyup", function(e) {
+                filtroCompletadas.titulo= $(this).val();
+                filtrarCompletadas();
+        });
+
+        $("#filtroDescripcionCompletas").on("change keyup", function(e) {
+                filtroCompletadas.descripcion = $(this).val();
+                filtrarCompletadas();
         });
 });
 
@@ -129,26 +151,40 @@ function mostrarFormulario() {
 	}
 }
 
-function filtrarTitulo(texto) {
-        $('.tarea').each(function(index, e) {
+function filtrar() {
+        $('#tareas .tarea').each(function(index, e) {
                 $(e).toggleClass(
                         'esconder', 
-                        !$($(e).children('h3')[0])
-                                .text()
-                                .toLowerCase()
-                                .includes(texto.toLowerCase())
+                        (
+                                !$($(e).children('h3')[0])
+                                        .text()
+                                        .toLowerCase()
+                                        .includes(filtro.titulo.toLowerCase())
+                                ||
+                                !$($(e).children('p')[0])
+                                        .text()
+                                        .toLowerCase()
+                                        .includes(filtro.descripcion.toLowerCase())
+                        )
                 );
         });
 }
 
-function filtrarDescripcion(texto) {
-        $('.tarea').each(function(index, e) {
+function filtrarCompletadas() {
+        $('#tareascompletadas .tarea').each(function(index, e) {
                 $(e).toggleClass(
                         'esconder', 
-                        !$($(e).children('p')[0])
-                                .text()
-                                .toLowerCase()
-                                .includes(texto.toLowerCase())
+                        (
+                                !$($(e).children('h3')[0])
+                                        .text()
+                                        .toLowerCase()
+                                        .includes(filtroCompletadas.titulo.toLowerCase())
+                                ||
+                                !$($(e).children('p')[0])
+                                        .text()
+                                        .toLowerCase()
+                                        .includes(filtroCompletadas.descripcion.toLowerCase())
+                        )
                 );
         });
 }
