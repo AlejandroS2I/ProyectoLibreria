@@ -3,11 +3,11 @@
 ## Hugo
 - [x] Insert php
 - [x] Delete php
-- [ ] Select JQuery
-- [ ] Update JQuery
+- [x] Select JQuery
+- [x] Update JQuery
 
 ## Alejandro
 - [x] Select php
 - [x] Update php
-- [ ] Insert JQuery
-- [ ] Delete JQuery
+- [x] Insert JQuery
+- [x] Delete JQuery
